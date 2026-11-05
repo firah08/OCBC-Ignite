@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Account overview</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="home">
+  <div id="site-header"></div>
+
+  <main class="container">
+    <section class="welcome">
+      <div>
+        <h1 id="welcome">Welcome back</h1>
+        <p id="last-login"></p>
+        <span class="protect-pill" id="protect-pill"></span>
+      </div>
+      <div class="total">
+        <div class="eyebrow">Total balance</div>
+        <div class="amount" id="total-balance"></div>
+      </div>
+    </section>
+
+    <div class="layout-main-side">
+      <div>
+        <section class="card card-flush">
+          <div class="card-head">
+            <h2>Deposit accounts</h2>
+            <a href="#" data-demo-only>View all</a>
+          </div>
+          <ul class="account-list" id="accounts"></ul>
+        </section>
+
+        <section class="card card-flush">
+          <div class="card-head">
+            <h2>Recent transactions</h2>
+            <a href="#" data-demo-only>View statement</a>
+          </div>
+          <ul class="tx-list" id="recent"></ul>
+        </section>
+      </div>
+
+      <aside>
+        <section class="card">
+          <h2>Quick actions</h2>
+          <div class="actions" id="quick-actions"></div>
+        </section>
+
+        <section class="card">
+          <div class="card-head"><h2>OneCheck protection</h2></div>
+          <ul class="status-list" id="security-status"></ul>
+        </section>
+
+        <section class="card tip-card">
+          <h3 id="tip-title"></h3>
+          <ul>
+            <li>We will never ask for your OTP or password over the phone or SMS.</li>
+            <li>Government officers will never ask you to transfer money to a "safe account".</li>
+            <li>If an investment promises guaranteed returns, it is likely a scam.</li>
+          </ul>
+        </section>
+      </aside>
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/exclusion-log.js"></script>
+  <script src="js/trusted-person.js"></script>
+  <script src="js/home.js"></script>
+</body>
+</html>

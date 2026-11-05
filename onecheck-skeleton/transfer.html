@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pay &amp; transfer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="transfer">
+  <div id="site-header"></div>
+
+  <main class="container">
+    <div class="page-head">
+      <div class="breadcrumb"><a href="index.html">Overview</a><span>Pay &amp; transfer</span></div>
+      <h1>Transfer money</h1>
+      <p class="subtitle">Send money to a saved payee, a new bank account, or by PayNow.</p>
+    </div>
+
+    <div id="stepper"></div>
+
+    <div class="layout-main-side">
+      <form id="transfer-form" class="card" novalidate>
+        <!-- FROM -->
+        <section class="form-section">
+          <h2>Transfer from</h2>
+          <div class="form-row">
+            <label for="from">Account</label>
+            <select id="from"></select>
+            <div class="hint" id="from-balance"></div>
+          </div>
+        </section>
+
+        <!-- TO -->
+        <section class="form-section">
+          <h2>Transfer to</h2>
+          <div class="segmented" role="tablist" aria-label="Payee type">
+            <button type="button" role="tab" data-mode="saved" aria-selected="true">Saved payee</button>
+            <button type="button" role="tab" data-mode="new" aria-selected="false">New payee</button>
+            <button type="button" role="tab" data-mode="paynow" aria-selected="false">PayNow</button>
+          </div>
+
+          <div data-panel="saved">
+            <div class="form-row">
+              <label for="payee">Payee</label>
+              <select id="payee"></select>
+              <div class="hint" id="payee-hint"></div>
+            </div>
+          </div>
+
+          <div data-panel="new" class="hidden">
+            <div class="form-row">
+              <label for="new-name">Payee name</label>
+              <input type="text" id="new-name" placeholder="As shown on the bank account" autocomplete="off">
+            </div>
+            <div class="form-grid">
+              <div class="form-row">
+                <label for="new-bank">Bank</label>
+                <select id="new-bank"></select>
+              </div>
+              <div class="form-row">
+                <label for="new-number">Account number</label>
+                <input type="text" id="new-number" placeholder="e.g. 123-456789-0" inputmode="numeric" autocomplete="off">
+              </div>
+            </div>
+          </div>
+
+          <div data-panel="paynow" class="hidden">
+            <div class="form-row">
+              <label for="paynow-mobile">Mobile number</label>
+              <div class="input-prefix">
+                <span>+65</span>
+                <input type="tel" id="paynow-mobile" placeholder="8 digits" maxlength="8" inputmode="numeric" autocomplete="off" style="font-size:16px;font-weight:600">
+              </div>
+              <div class="hint">Demo numbers: 9123 4567, 9876 5432, 8111 2222</div>
+              <div id="paynow-result"></div>
+            </div>
+          </div>
+
+          <!-- SLOT (Su Yi): exclusion log hint, e.g. "This payee is in your exclusion log". Filled by ExclusionLog.renderHint() -->
+          <div id="exclusion-slot"></div>
+        </section>
+
+        <!-- AMOUNT -->
+        <section class="form-section">
+          <h2>Amount and details</h2>
+          <div class="form-row">
+            <label for="amount">Amount</label>
+            <div class="input-prefix">
+              <span>S$</span>
+              <input type="number" id="amount" min="0.01" step="0.01" placeholder="0.00" inputmode="decimal">
+            </div>
+            <div class="hint" id="limit-hint"></div>
+            <div class="error" id="amount-error"></div>
+          </div>
+          <div class="form-grid">
+            <div class="form-row">
+              <label for="purpose">Purpose of transfer</label>
+              <select id="purpose"></select>
+            </div>
+            <div class="form-row">
+              <label for="remarks">Remarks <span class="muted">(optional)</span></label>
+              <input type="text" id="remarks" maxlength="140" placeholder="e.g. Rent for November">
+            </div>
+          </div>
+        </section>
+
+        <div class="error" id="form-error" style="margin-bottom:12px"></div>
+        <div class="btn-row end">
+          <a class="btn btn-ghost" href="index.html">Cancel</a>
+          <button type="submit" class="btn btn-primary">Next</button>
+        </div>
+      </form>
+
+      <aside>
+        <section class="card tip-card">
+          <h3 id="tip-title"></h3>
+          <ul>
+            <li>Only transfer to people you have met or businesses you can verify.</li>
+            <li>Scammers create urgency. Take a moment and check with family first.</li>
+            <li>Never transfer money to "protect" it from a bank or government officer.</li>
+          </ul>
+        </section>
+        <section class="card">
+          <h3 id="onecheck-title"></h3>
+          <p class="small muted" style="margin:0">After you tap <strong>Next</strong>, OneCheck reviews the payee, amount and remarks for signs of a scam before any money leaves your account.</p>
+        </section>
+      </aside>
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/exclusion-log.js"></script>
+  <script src="js/transfer.js"></script>
+</body>
+</html>
